@@ -3,18 +3,17 @@
 #include <stdlib.h>
 
 #define MAX_PAIRS 100
-#define BUFFER_SIZE 256
 
 struct keyValuePair {
-    char *key;
-    char *value;
+    char key[21];
+    char value[21];
 };
 
 struct keyValuePair keyValueDb[MAX_PAIRS];
 int pairCount = 0;
 
 int getIndex(const char *key){
-    for(int i=0; i<pairCount; i++){
+    for(int i= 0; i< pairCount; i++){
         if(strcmp(keyValueDb[i].key, key)== 0){
             return i;
         }
@@ -31,7 +30,6 @@ void setValue(char *key, char *value){
     int index= getIndex(key);
 
     if(index!= -1){
-        keyValueDb[index].value= malloc(strlen(value) + 1);
         strcpy(keyValueDb[index].value, value);
     }
     else{
@@ -40,10 +38,7 @@ void setValue(char *key, char *value){
             return;
         }
 
-        keyValueDb[pairCount].key= malloc(strlen(key)+ 1);
         strcpy(keyValueDb[pairCount].key, key);
-
-        keyValueDb[pairCount].value= malloc(strlen(value)+ 1);
         strcpy(keyValueDb[pairCount].value, value);
 
         pairCount++;
@@ -73,11 +68,10 @@ void deleteValue(char *key) {
 }
 
 
-
 int main(){
 
-    char input[BUFFER_SIZE];
-    char action[20], key[BUFFER_SIZE], value[BUFFER_SIZE];
+    char input[202];
+    char action[21], key[21], value[21];
 
     printf("The following actions are allowed: SET, GET, DELETE. To exit, enter EXIT.\n");
     while(1){
