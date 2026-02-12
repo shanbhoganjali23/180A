@@ -33,7 +33,7 @@ void setValue(char *key, char *value){
         strcpy(keyValueDb[index].value, value);
     }
     else{
-        if(pairCount> MAX_PAIRS){
+        if(pairCount>= MAX_PAIRS){
             printf("ERROR: Maximum limit reached. \n");
             return;
         }
@@ -61,7 +61,7 @@ void deleteValue(char *key) {
     if (index== -1) return;
 
     // After deleting an element, we left rotate the array by 1.
-    for (int i= index; i< pairCount- 1; i++) {
+    for (int i= index; i< pairCount; i++) {
         keyValueDb[i]= keyValueDb[i+ 1];
     }
     pairCount--;
