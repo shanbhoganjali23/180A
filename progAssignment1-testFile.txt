@@ -1,0 +1,11 @@
+SET myKey 1234
+GET myKey
+GET invalidKey
+SET tempKey 99
+DELETE tempKey
+GET tempKey
+SET score 10
+SET score 20
+GET score
+DELETE fakeKey
+EXIT
